@@ -21,7 +21,12 @@ public class CreateCylinderTower : MonoBehaviour
     int weight = 11;
     //[SerializeField]
     //int[,] towerForm;
-    int[ , ] towerForm =    {
+    //int[,] towerForm =    {
+    //    {1,1,1},
+    //    {1,1,1},
+    //    {1,1,1}
+    //};
+    int[,] towerForm =    {
     { 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0 },
     { 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 0 },
     { 0, 1, 1, 0, 0, 0, 0, 0, 1, 1, 0 },
@@ -77,7 +82,7 @@ public class CreateCylinderTower : MonoBehaviour
     }
     void BuildTower()
     {
-        GameObject newBuilding = Instantiate(building, Vector3.zero, Quaternion.identity);
+        GameObject newBuilding = Instantiate(building, transform.position, Quaternion.identity);
         for (int k = 0; k < height; k++)
         {
             GameObject newFloor = CreateFloor(k, newBuilding);
@@ -108,7 +113,8 @@ public class CreateCylinderTower : MonoBehaviour
     }
     GameObject CreateFloor(int y, GameObject newBuilding)
     {
-        Vector3 floorPosition = new Vector3(0, y, 0);
+        Vector3 floorPosition = transform.position;
+        floorPosition.y = y;
         GameObject ret = Instantiate(floor, floorPosition, Quaternion.identity, newBuilding.transform);
         return (ret);
 
