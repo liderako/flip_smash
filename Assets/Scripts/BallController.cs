@@ -6,6 +6,7 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private Vector3 _forceHit;
     [SerializeField] private Vector3 _direction;
+    [SerializeField] private float _impulseHit;
     
     private Rigidbody _rb;
     private bool _isHit;
@@ -23,7 +24,15 @@ public class BallController : MonoBehaviour
             _direction.y * (_forceHit.y + speed),
             _direction.z * (_forceHit.z + speed),
             ForceMode.Impulse
-            );
+        );
         _isHit = true;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == 9)
+        {
+            other.gameObject.GetComponent<BlockCheck>().Impulse(_impulseHit);
+        }
     }
 }

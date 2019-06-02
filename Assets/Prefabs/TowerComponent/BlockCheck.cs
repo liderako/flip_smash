@@ -50,4 +50,10 @@ public class BlockCheck : MonoBehaviour
         rb.useGravity = true;
 
     }
+    
+    public void Impulse(float speed)
+    {
+        Vector3 dir = rb.velocity.normalized;
+        rb.AddForce(dir * speed, ForceMode.Impulse);
+    }
 }

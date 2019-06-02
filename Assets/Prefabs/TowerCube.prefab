@@ -119,7 +119,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  prefab: {fileID: 2795628555066241678, guid: c3da02c1bf3fa453aae3a188e0381fc7, type: 3}
+  prefab: {fileID: 2795628555066241678, guid: f3d2944de991943b7b302487c21ceb98, type: 3}
   floor: {fileID: 8346795463811762386, guid: 6ff9a8a4375e14774a40848f2c8c2157, type: 3}
   building: {fileID: 8549288120199819047, guid: 5dc17c0b0ed6b4f19a0a3d44fe2ec167, type: 3}
   spaceDelta: 0.05

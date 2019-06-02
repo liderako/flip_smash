@@ -47,7 +47,7 @@ public class RotateController : MonoBehaviour
 
     private void Touch()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
         {
             _currentAmountRotate = 0;
         }
