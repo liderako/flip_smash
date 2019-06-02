@@ -6,7 +6,6 @@ public class BallController : MonoBehaviour
 {
     [SerializeField] private Vector3 _forceHit;
     [SerializeField] private Vector3 _direction;
-    [SerializeField] private float _maxVelocityY;
     
     private Rigidbody _rb;
     private bool _isHit;
@@ -16,25 +15,15 @@ public class BallController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
-    {
-//        if (_isHit)
-//        {
-//            _rb.AddForce(_direction * _forceHit, ForceMode.Force);
-//        }
-    }
-
-    private void Update()
-    {
-        Debug.Log(_rb.velocity);
-    }
-
-    public void addImpulse()
+    public void addImpulse(Vector3 dir, float speed)
     {
         _rb.velocity = Vector3.zero;
-        Debug.Log(_rb.velocity);
-        _rb.AddForce(_direction.x * _forceHit.x, _direction.y * _forceHit.y, _direction.z * _forceHit.z, ForceMode.Impulse);
+        _rb.AddForce(
+            _direction.x * (_forceHit.x + speed),
+            _direction.y * (_forceHit.y + speed),
+            _direction.z * (_forceHit.z + speed),
+            ForceMode.Impulse
+            );
         _isHit = true;
-        Debug.Log(_rb.velocity);
     }
 }

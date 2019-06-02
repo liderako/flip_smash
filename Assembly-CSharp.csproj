@@ -54,6 +54,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Prefabs\TowerComponent\CreateCylinderTower.cs" />
+    <Compile Include="Assets\Prefabs\TowerComponent\CreateTower.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\RotateController.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">

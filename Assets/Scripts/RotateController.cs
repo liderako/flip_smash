@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class RotateController : MonoBehaviour
 {
-    [SerializeField]private float _step;
-    [SerializeField]private float _waitCoroutine;
+    [SerializeField] private float _step;
+    [SerializeField] private float _waitCoroutine;
     [SerializeField] private int _maxAmountRotate;
     [SerializeField] private int _currentAmountRotate;
+    
+    private Rigidbody _rb;
     private float oldTime;
     
     public static RotateController rt;
-    private Rigidbody _rb;
-    
     
     void Awake()
     {
@@ -58,7 +58,7 @@ public class RotateController : MonoBehaviour
     {
         if (other.gameObject.layer == 9 && IsRotate())
         {
-            other.gameObject.GetComponent<BallController>().addImpulse();
+            other.gameObject.GetComponent<BallController>().addImpulse(Vector3.zero, 0.1f * _currentAmountRotate);
         }
     }
 

@@ -1,1 +1,0 @@
-# huper_casual_online_hackaton
