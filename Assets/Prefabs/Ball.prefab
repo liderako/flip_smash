@@ -121,6 +121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c186d361b5f44b868066a99fa23d532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _forceHit: {x: 1, y: 1, z: 2}
-  _direction: {x: 0, y: -1, z: 2}
+  _forceHit: {x: 1, y: 1, z: 1}
+  _direction: {x: 0, y: 0.8, z: 1.6}
   _impulseHit: 0.01
