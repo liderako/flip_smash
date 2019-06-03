@@ -54,13 +54,17 @@ public class RotateController : MonoBehaviour
             _axis = Input.GetAxis("Mouse Y");
             Vector3 tmp = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             _axis = tmp.x;
-            if (_axis < 0.5)
+            if (_axis <= 0.3)
             {
                 _axis += 1f;
             }
-            else
+            else if (_axis >= 0.7)
             {
                 _axis *= -1;
+            }
+            else
+            {
+                _axis = 0;
             }
             _currentAmountRotate = 0;
         }
@@ -69,7 +73,7 @@ public class RotateController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 9 && IsRotate())
+        if (other.gameObject.layer == 9 && IsRotate() && other.gameObject.GetComponent<BallController>() != null)
         {
             other.gameObject.GetComponent<BallController>().addImpulse(new Vector3(0, 0, _axis * 0.5f), 0.1f * _currentAmountRotate);
         }

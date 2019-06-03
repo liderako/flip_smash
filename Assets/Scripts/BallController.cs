@@ -18,6 +18,7 @@ public class BallController : MonoBehaviour
 
     public void addImpulse(Vector3 dir, float speed)
     {
+        gameObject.layer = 11;
         _rb.velocity = Vector3.zero;
         _rb.AddForce(
             (_direction.x + dir.x) *(_forceHit.x + speed),

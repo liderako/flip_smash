@@ -10,6 +10,7 @@ public class Trough : MonoBehaviour
     [SerializeField] private Vector3 _downPosition;
     [SerializeField] private float _speed;
     [SerializeField] private float _waitMoveDown;
+    [SerializeField] private float _waitCloseFlip;
     
     [SerializeField] private bool _isDown;
     [SerializeField] private bool _isUp;
@@ -29,6 +30,7 @@ public class Trough : MonoBehaviour
         {
             MoveUp();
         }
+        MoveDown();
     }
 
     private void MoveUp()
@@ -52,14 +54,16 @@ public class Trough : MonoBehaviour
                 StartCoroutine(StartMoveDown());
             }
         }
+    }
+
+    private void MoveDown()
+    {
         if (_isMoveDown)
         {
             transform.localPosition = Vector3.MoveTowards(transform.localPosition, _downPosition, _speed * Time.deltaTime);
             if (Vector3.Distance(transform.localPosition, _downPosition) < 0.001f)
             {
-                _isMoveDown = false;
-                _isDown = true;
-                GameManager.Gm.IsReadyFlip = false;
+                StartCoroutine(CloseFlip());
             }
         }
     }
@@ -68,5 +72,13 @@ public class Trough : MonoBehaviour
     {
         yield return new WaitForSeconds(_waitMoveDown);
         _isMoveDown = true;
+    }
+
+    IEnumerator CloseFlip()
+    {
+        yield return new WaitForSeconds(_waitCloseFlip);
+        GameManager.Gm.IsReadyFlip = false;
+        _isMoveDown = false;
+        _isDown = true;
     }
 }
