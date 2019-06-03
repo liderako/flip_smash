@@ -49,18 +49,18 @@ public class RotateController : MonoBehaviour
 
     private void Touch()
     {
-        if (GameManager.Gm.IsReadyFlip && Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
+        if (/*GameManager.Gm.IsReadyFlip &&*/ Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
         {
             _axis = Input.GetAxis("Mouse Y");
             Vector3 tmp = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             _axis = tmp.x;
             if (_axis <= 0.3)
             {
-                _axis += 1f;
+                _axis = -0.2f;
             }
             else if (_axis >= 0.7)
             {
-                _axis *= -1;
+                _axis = 0.2f;
             }
             else
             {
@@ -75,7 +75,7 @@ public class RotateController : MonoBehaviour
     {
         if (other.gameObject.layer == 9 && IsRotate() && other.gameObject.GetComponent<BallController>() != null)
         {
-            other.gameObject.GetComponent<BallController>().addImpulse(new Vector3(0, 0, _axis * 0.5f), 0.1f * _currentAmountRotate);
+            other.gameObject.GetComponent<BallController>().addImpulse(new Vector3(_axis, 0, 0), 0.1f * _currentAmountRotate);
         }
     }
 
