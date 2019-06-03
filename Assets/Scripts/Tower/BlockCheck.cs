@@ -17,6 +17,7 @@ public class BlockCheck : MonoBehaviour
         startPos = transform.position;
         grade = false;
         push = false;
+        GameManager.Gm.AddBlock();
     }
 
     void Update()
