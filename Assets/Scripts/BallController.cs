@@ -30,7 +30,7 @@ public class BallController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 9)
+        if (other.gameObject.layer == 9 && other.gameObject.GetComponent<BlockCheck>() != null)
         {
             other.gameObject.GetComponent<BlockCheck>().Impulse(_impulseHit);
         }

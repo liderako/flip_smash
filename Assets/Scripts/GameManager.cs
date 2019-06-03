@@ -5,17 +5,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    Image _progressBar;
-    [SerializeField, Range(0, 1)]
-    float _winDelta;
-    [SerializeField, Range(0, 5)]
-    float _speedProgressbar;
+    [SerializeField] private Image _progressBar;
+    [SerializeField, Range(0, 1)] private float _winDelta;
+    [SerializeField, Range(0, 5)] private float _speedProgressbar;
     private float _score = 0;
     private float _blockNum = 0;
-
+    
     public static GameManager Gm;
-    private bool isReadyFlip;
     
     void Awake()
     {
@@ -37,20 +33,17 @@ public class GameManager : MonoBehaviour
     {
         get => _score;
     }
-
-    public bool IsReadyFlip
-    {
-        get => isReadyFlip;
-        set => isReadyFlip = value;
-    }
+    
     public void AddBlock()
     {
         _blockNum += 1;
     }
+    
     public void RefreshBlock()
     {
         _blockNum = 0;
     }
+    
     void ChangeProgress()
     {
         Debug.Log("BlockNum" + _blockNum);

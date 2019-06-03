@@ -13,14 +13,15 @@ public class RotateController : MonoBehaviour
     private Rigidbody _rb;
     private float _axis;
     private float _oldTime;
+    [SerializeField]private bool _isBall;
     
-    public static RotateController rt;
+    public static RotateController Rt;
     
     void Awake()
     {
-        if (rt == null)
+        if (Rt == null)
         {
-            rt = new RotateController();
+            Rt = this;
         }
     }
 
@@ -49,7 +50,7 @@ public class RotateController : MonoBehaviour
 
     private void Touch()
     {
-        if (/*GameManager.Gm.IsReadyFlip &&*/ Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
+        if (_isBall && Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
         {
             _axis = Input.GetAxis("Mouse Y");
             Vector3 tmp = Camera.main.ScreenToViewportPoint(Input.mousePosition);
@@ -79,6 +80,10 @@ public class RotateController : MonoBehaviour
             {
                 other.gameObject.GetComponent<BallController>()
                     .addImpulse(new Vector3(_axis, 0, 0), 0.1f * _currentAmountRotate);
+                if (_isBall)
+                {
+                    _isBall = false;
+                }
             }
             else
             {
@@ -90,5 +95,11 @@ public class RotateController : MonoBehaviour
     public bool IsRotate()
     {
         return _currentAmountRotate != 36;
+    }
+
+    public bool IsBall
+    {
+        get => _isBall;
+        set => _isBall = value;
     }
 }
