@@ -20,9 +20,9 @@ public class BallController : MonoBehaviour
     {
         _rb.velocity = Vector3.zero;
         _rb.AddForce(
-            _direction.x * (_forceHit.x + speed),
-            _direction.y * (_forceHit.y + speed),
-            _direction.z * (_forceHit.z + speed),
+            (_direction.x + dir.x) *(_forceHit.x + speed),
+            (_direction.y + dir.y) *(_forceHit.y + speed),
+            (_direction.z + dir.z) *(_forceHit.z + speed),
             ForceMode.Impulse
         );
         _isHit = true;

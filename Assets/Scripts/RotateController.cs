@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class RotateController : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public class RotateController : MonoBehaviour
     [SerializeField] private int _currentAmountRotate;
     
     private Rigidbody _rb;
-    private float oldTime;
+    private float _axis;
+    private float _oldTime;
     
     public static RotateController rt;
     
@@ -25,7 +27,7 @@ public class RotateController : MonoBehaviour
     void Start()
     {;
         _rb = GetComponent<Rigidbody>();
-        oldTime = Time.time;
+        _oldTime = Time.time;
     }
 
     void Update()
@@ -36,19 +38,30 @@ public class RotateController : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (_currentAmountRotate != _maxAmountRotate && Time.time - oldTime > _waitCoroutine)
+        if (_currentAmountRotate != _maxAmountRotate && Time.time - _oldTime > _waitCoroutine)
         {
             _rb.transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y,
                 transform.rotation.eulerAngles.z + _step);
-            oldTime = Time.time;
+            _oldTime = Time.time;
             _currentAmountRotate += 1;
         }
     }
 
     private void Touch()
     {
-        if (Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
+        if (GameManager.Gm.IsReadyFlip && Input.GetMouseButtonDown(0) && _currentAmountRotate == 36)
         {
+            _axis = Input.GetAxis("Mouse Y");
+            Vector3 tmp = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            _axis = tmp.x;
+            if (_axis < 0.5)
+            {
+                _axis += 1f;
+            }
+            else
+            {
+                _axis *= -1;
+            }
             _currentAmountRotate = 0;
         }
     }
@@ -58,7 +71,7 @@ public class RotateController : MonoBehaviour
     {
         if (other.gameObject.layer == 9 && IsRotate())
         {
-            other.gameObject.GetComponent<BallController>().addImpulse(Vector3.zero, 0.1f * _currentAmountRotate);
+            other.gameObject.GetComponent<BallController>().addImpulse(new Vector3(0, 0, _axis * 0.5f), 0.1f * _currentAmountRotate);
         }
     }
 

@@ -54,12 +54,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Prefabs\TowerComponent\BlockCheck.cs" />
-    <Compile Include="Assets\Prefabs\TowerComponent\CreateCylinderTower.cs" />
-    <Compile Include="Assets\Prefabs\TowerComponent\CreateTower.cs" />
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\RotateController.cs" />
+    <Compile Include="Assets\Scripts\Tower\BlockCheck.cs" />
+    <Compile Include="Assets\Scripts\Tower\CreateCylinderTower.cs" />
+    <Compile Include="Assets\Scripts\Tower\CreateTower.cs" />
+    <Compile Include="Assets\Scripts\Trough.cs" />
     <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

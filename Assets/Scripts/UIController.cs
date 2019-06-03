@@ -6,17 +6,10 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField]
-    TextMeshProUGUI score;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] TextMeshProUGUI scoreText;
 
-    // Update is called once per frame
     void Update()
     {
-        score.text = "SCORE: " + GameManager.score;
+        scoreText.text = "" + GameManager.Gm.Score;
     }
 }
