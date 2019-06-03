@@ -35,4 +35,9 @@ public class BallController : MonoBehaviour
             other.gameObject.GetComponent<BlockCheck>().Impulse(_impulseHit);
         }
     }
+
+    public void StopingFly()
+    {
+        _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+    }
 }

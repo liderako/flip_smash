@@ -73,9 +73,17 @@ public class RotateController : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == 9 && IsRotate() && other.gameObject.GetComponent<BallController>() != null)
+        if (other.gameObject.layer == 9 && other.gameObject.GetComponent<BallController>() != null)
         {
-            other.gameObject.GetComponent<BallController>().addImpulse(new Vector3(_axis, 0, 0), 0.1f * _currentAmountRotate);
+            if (IsRotate())
+            {
+                other.gameObject.GetComponent<BallController>()
+                    .addImpulse(new Vector3(_axis, 0, 0), 0.1f * _currentAmountRotate);
+            }
+            else
+            {
+                other.gameObject.GetComponent<BallController>().StopingFly();
+            }
         }
     }
 
