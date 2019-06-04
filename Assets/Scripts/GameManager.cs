@@ -24,10 +24,17 @@ public class GameManager : MonoBehaviour
             Gm = this;
         }
     }
+    
     void Update()
     {
         ChangeProgress();
     }
+
+    public Gradient GetGradientForCurrentLevel()
+    {
+        return _gradients[Random.Range(0, _gradients.Count)];
+    }
+    
     public void AddScore()
     {
         _score += 1;

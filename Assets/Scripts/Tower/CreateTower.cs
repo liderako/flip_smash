@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CreateTower : MonoBehaviour
 {
-    [SerializeField] private Gradient _floorGradient;
+    private Gradient _floorGradient;
     [SerializeField] private GameObject _prefab;
     [SerializeField] private GameObject _floor;
     [SerializeField] private GameObject _building;
@@ -34,10 +34,10 @@ public class CreateTower : MonoBehaviour
     };
     void Start()
     {
+        _floorGradient = GameManager.Gm.GetGradientForCurrentLevel();
         _positionDelta = _weight / 2 * _prefab.transform.localScale.x;
-        BuildTower();
         _euler = _floor.transform.eulerAngles;
-        //_floorQuaternion = _floor.transform.rotation;
+        BuildTower();
     }
 
     void BuildTower()
