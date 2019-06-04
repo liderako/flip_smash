@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Image _progressBar;
     [SerializeField, Range(0, 1)] private float _winDelta;
     [SerializeField, Range(0, 5)] private float _speedProgressbar;
+    [SerializeField] private List<Gradient> _gradients;
+    
+    private float _win;
+    private float _percent;
     private float _score = 0;
     private float _blockNum = 0;
     
@@ -37,6 +41,8 @@ public class GameManager : MonoBehaviour
     public void AddBlock()
     {
         _blockNum += 1;
+        _win = _blockNum * _winDelta;
+        _percent = _win / 10;
     }
     
     public void RefreshBlock()
@@ -46,11 +52,6 @@ public class GameManager : MonoBehaviour
     
     void ChangeProgress()
     {
-        Debug.Log("BlockNum" + _blockNum);
-        float win = _blockNum * _winDelta;
-        Debug.Log("win" + win);
-        float percent = win / 10;
-        Debug.Log("percent" + percent);
-        _progressBar.fillAmount = Mathf.Lerp(_progressBar.fillAmount, _score / percent / 10, _speedProgressbar);
+        _progressBar.fillAmount = Mathf.Lerp(_progressBar.fillAmount, _score / _percent/10, _speedProgressbar);
     }
 }

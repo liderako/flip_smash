@@ -61,7 +61,6 @@
     <Compile Include="Assets\Scripts\Tower\CreateCylinderTower.cs" />
     <Compile Include="Assets\Scripts\Tower\CreateTower.cs" />
     <Compile Include="Assets\Scripts\Trough.cs" />
-    <Compile Include="Assets\Scripts\UIController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
