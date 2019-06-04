@@ -2081,11 +2081,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6367597096936817297, guid: b0c34e79835044b34bafef8aeeea6967, type: 3}
       propertyPath: _height
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6367597096936817297, guid: b0c34e79835044b34bafef8aeeea6967, type: 3}
       propertyPath: _anglesDelta
-      value: 10
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 6367597096936817297, guid: b0c34e79835044b34bafef8aeeea6967, type: 3}
       propertyPath: _spaceDelta
@@ -4424,6 +4424,10 @@ PrefabInstance:
       propertyPath: _RetryLevel
       value: 
       objectReference: {fileID: 556530478}
+    - target: {fileID: 4553316370010986972, guid: c08611282c9064936a3d8ee01ce5fbc0, type: 3}
+      propertyPath: _waitTime
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c08611282c9064936a3d8ee01ce5fbc0, type: 3}
 --- !u!1001 &8508068732728600955

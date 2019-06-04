@@ -43,6 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c47c560f0e0d449859cb066a2c3c5ea3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lvlText: {fileID: 0}
+  _percentText: {fileID: 0}
+  _DestroyText: {fileID: 0}
+  _TextEndLevel: {fileID: 0}
+  _RetryLevel: {fileID: 0}
   _progressBar: {fileID: 0}
+  _nextLvl: {fileID: 0}
   _winDelta: 0.75
   _speedProgressbar: 1
+  _gradients: []
+  _towersCube: []
+  _win: 0
+  _percent: 0
+  _score: 0
+  _blockNum: 0
+  _currentLevel: 0
+  _isLeveldone: 0
+  _isDoneBall: 0
+  _waitTime: 3.5

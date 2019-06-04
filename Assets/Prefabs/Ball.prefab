@@ -123,4 +123,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _forceHit: {x: 1, y: 1, z: 1}
   _direction: {x: 0, y: 0.8, z: 1.6}
-  _impulseHit: 0.01
+  _impulseHit: 0.05

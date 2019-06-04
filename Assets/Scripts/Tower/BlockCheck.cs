@@ -44,6 +44,7 @@ public class BlockCheck : MonoBehaviour
         if (rb.velocity.x > velDelta || rb.velocity.z > velDelta || rb.velocity.z > velDelta)
         {
             rb.useGravity = true;
+            GetComponent<BoxCollider>().enabled = false;
             push = true;
         }
     }
