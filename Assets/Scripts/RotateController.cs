@@ -85,9 +85,10 @@ public class RotateController : MonoBehaviour
                 {
                     _isBall = false;
                 }
+
                 if (_trough.AmountBall() == 0)
                 {
-                    GameManager.Gm._isDoneBall = true;
+                    StartCoroutine(GameManager.Gm.BallDone());
                 }
             }
             else

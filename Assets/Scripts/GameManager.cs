@@ -162,4 +162,10 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("level", 0);
         RestartLevel();
     }
+
+    public IEnumerator BallDone()
+    {
+        yield return new WaitForSeconds(_waitTime);
+        _isDoneBall = true;
+    }
 }
