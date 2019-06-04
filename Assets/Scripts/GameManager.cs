@@ -25,8 +25,13 @@ public class GameManager : MonoBehaviour
     public float _blockNum = 0; // change from public to private
     public int _currentLevel; // change from public to private
     public bool _isLeveldone; // change from public to private
+    public bool _isDoneBall;
+    private bool _isRetry;
+    private float _oldTime;
+    [SerializeField]private float _waitTime;
     
     public static GameManager Gm;
+    
     
     void Awake()
     {
@@ -38,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        _oldTime = Time.time;
         if (PlayerPrefs.GetInt("level", 0) == 0)
         {
             PlayerPrefs.SetInt("level", 0);
@@ -73,6 +79,14 @@ public class GameManager : MonoBehaviour
         {
             NextLevel();
         }
+        if (_isRetry && Input.GetMouseButtonDown(0))
+        {
+            RestartLevel();
+        }
+        if (_isDoneBall && Time.time - _oldTime > _waitTime)
+        {
+            RetryLevel();
+        } 
     }
     
     void LateUpdate()
@@ -92,6 +106,7 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         _score += 1;
+        _oldTime = Time.time;
     }
     
     public void AddBlock()
@@ -137,7 +152,7 @@ public class GameManager : MonoBehaviour
         _destroyBlock = (int)_progressBar.fillAmount * 100;
         _DestroyText.text = _destroyBlock + "%";
         _RetryLevel.SetActive(true);
-
+        _isRetry = true;
     }
     /*
      * For testing

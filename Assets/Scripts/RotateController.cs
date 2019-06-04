@@ -9,6 +9,7 @@ public class RotateController : MonoBehaviour
     [SerializeField] private float _waitCoroutine;
     [SerializeField] private int _maxAmountRotate;
     [SerializeField] private int _currentAmountRotate;
+    [SerializeField] private Trough _trough;
     
     private Rigidbody _rb;
     private float _axis;
@@ -83,6 +84,10 @@ public class RotateController : MonoBehaviour
                 if (_isBall)
                 {
                     _isBall = false;
+                }
+                if (_trough.AmountBall() == 0)
+                {
+                    GameManager.Gm._isDoneBall = true;
                 }
             }
             else
