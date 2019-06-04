@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI _lvlText;
+    [SerializeField] private TextMeshProUGUI _percentText;
+    [SerializeField] private TextMeshProUGUI _DestroyText;
+    [SerializeField] private GameObject _TextEndLevel;
+    [SerializeField] private GameObject _RetryLevel;
     [SerializeField] private Image _progressBar;
+    [SerializeField] private Image _nextLvl;
     [SerializeField, Range(0, 1)] private float _winDelta;
     [SerializeField, Range(0, 5)] private float _speedProgressbar;
     [SerializeField] private List<Gradient> _gradients;
     [SerializeField] private List<GameObject> _towersCube;
-    [SerializeField] private GameObject _TextEndLevel;
-    
+    private int _destroyBlock;
     public float _win; // change from public to private
     public float _percent; // change from public to private
     public float _score = 0; // change from public to private
@@ -45,6 +51,7 @@ public class GameManager : MonoBehaviour
         {
             _towersCube[_currentLevel].SetActive(true);
         }
+        _lvlText.text = "LVL: " + _currentLevel;
     }
 
     void Update()
@@ -120,11 +127,18 @@ public class GameManager : MonoBehaviour
     {
         if (_score >= _win && _score != 0)
         {
+            _nextLvl.fillAmount = Mathf.Lerp(_nextLvl.fillAmount, 1, _speedProgressbar / 10);
             _isLeveldone = true;
-            //_TextEndLevel.SetActive(true);
+            _TextEndLevel.SetActive(true);
         }
     }
-    
+    public void RetryLevel()
+    {
+        _destroyBlock = (int)_progressBar.fillAmount * 100;
+        _DestroyText.text = _destroyBlock + "%";
+        _RetryLevel.SetActive(true);
+
+    }
     /*
      * For testing
     */
