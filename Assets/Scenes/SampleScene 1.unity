@@ -2853,7 +2853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1764190785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4138,7 +4138,7 @@ PrefabInstance:
       objectReference: {fileID: 1160636176}
     - target: {fileID: 4553316370010986972, guid: c08611282c9064936a3d8ee01ce5fbc0, type: 3}
       propertyPath: _winDelta
-      value: 0.202
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4553316370010986972, guid: c08611282c9064936a3d8ee01ce5fbc0, type: 3}
       propertyPath: _gradients.Array.data[0].ctime1
