@@ -69,7 +69,6 @@ public class CreateTower : MonoBehaviour
             RotateFloor(newFloor);
 
         }
-        Destroy(gameObject);
     }
     GameObject CreateFloor(int y, GameObject newBuilding)
     {
