@@ -32,6 +32,11 @@ public class Trough : MonoBehaviour
         MoveDown();
     }
 
+    public int AmountBall()
+    {
+        return _balls.Count;
+    }
+
     private void MoveUp()
     {
         if (Input.GetMouseButtonDown(0) && _isDown && !RotateController.Rt.IsBall)
