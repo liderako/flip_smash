@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{64E8A3A9-98E1-D0AF-AD42-26EB98AAC913}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Tower/CreateTower.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GameManager.cs">
     <Files>
       <File FileName="Assets/Scripts/Tower/BlockCheck.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="136" Column="6" />
-      <File FileName="Assets/Scripts/Tower/CreateTower.cs" Line="24" Column="25" />
+      <File FileName="Assets/Scripts/RotateController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="53" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,9 +11,8 @@
           <Node name="huper_casual_online_hackaton" expanded="True">
             <Node name="Assets" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="Tower" expanded="True">
-                  <Node name="CreateTower.cs" selected="True" />
-                </Node>
+                <Node name="Tower" expanded="True" />
+                <Node name="GameManager.cs" selected="True" />
               </Node>
             </Node>
           </Node>
