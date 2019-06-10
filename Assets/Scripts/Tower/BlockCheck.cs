@@ -13,6 +13,7 @@ public class BlockCheck : MonoBehaviour
 
     void Start()
     {
+        GameManager.Gm.LoadLevel += RestartLevel;
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         grade = false;
@@ -58,5 +59,10 @@ public class BlockCheck : MonoBehaviour
     {
         Vector3 dir = rb.velocity.normalized;
         rb.AddForce(dir * speed, ForceMode.Impulse);
+    }
+
+    private void RestartLevel()
+    {
+        CubePool.Cb.ReturnObject(gameObject.GetComponent<BlockCheck>());
     }
 }

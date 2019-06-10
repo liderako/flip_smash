@@ -67,19 +67,14 @@ public class CreateCylinderTower : MonoBehaviour
     //};
     float positionDelta;
     Vector3 euler;
-    Quaternion floorQuaternion;
+
     void Start()
     {
         positionDelta = weight / 2 * prefab.transform.localScale.x;
         BuildTower();
         euler = floor.transform.eulerAngles;
-        floorQuaternion = floor.transform.rotation;
     }
 
-
-    void Update()
-    {
-    }
     void BuildTower()
     {
         GameObject newBuilding = Instantiate(building, transform.position, Quaternion.identity);

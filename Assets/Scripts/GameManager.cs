@@ -28,12 +28,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]private bool _isLeveldone;
     [SerializeField]private bool _isDoneBall;
     private bool _isRetry;
-    [SerializeField]private float _oldTime;
     
+    [SerializeField]private float _oldTime;
     [SerializeField]private float _waitTime;
     
     public static GameManager Gm;
-    
+    public delegate void MethodContainer();
+    public event MethodContainer LoadLevel;
     
     void Awake()
     {
@@ -45,7 +46,38 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        _oldTime = Time.time;
+        LoadLevel += RestartLevel;
+        LoadLevel();
+    }
+
+    void Update()
+    {
+        TestInput();
+        if (_isLeveldone && Input.GetMouseButtonDown(0))
+        {
+            NextLevel();
+        }
+        if (_isRetry && Input.GetMouseButtonDown(0))
+        {
+            LoadLevel();
+        }
+        if (_isDoneBall && Time.time - _oldTime > _waitTime)
+        {
+            RetryLevel();
+        } 
+    }
+    
+    void LateUpdate()
+    {
+        ChangeProgress();
+    }
+    
+    public void RestartLevel()
+    {
+        _isLeveldone = false;
+        _isDoneBall =false;
+        _isRetry = false;
+        //_oldTime = Time.time;
         if (PlayerPrefs.GetInt("level", 0) == 0)
         {
             PlayerPrefs.SetInt("level", 0);
@@ -60,38 +92,6 @@ public class GameManager : MonoBehaviour
             _towersCube[_currentLevel].SetActive(true);
         }
         _lvlText.text = "LVL: " + _currentLevel;
-    }
-
-    void Update()
-    {
-        TestInput();
-        
-        if (_isLeveldone && Input.GetMouseButtonDown(0))
-        {
-            NextLevel();
-        }
-        if (_isRetry && Input.GetMouseButtonDown(0))
-        {
-            RestartLevel();
-        }
-        if (_isDoneBall && Time.time - _oldTime > _waitTime)
-        {
-            RetryLevel();
-        } 
-    }
-    
-    void LateUpdate()
-    {
-        ChangeProgress();
-    }
-
-    public Gradient GetGradientForCurrentLevel()
-    {
-        if (_currentLevel >= _towersCube.Count)
-        {
-            return _gradients[_currentLevel % _towersCube.Count];
-        }
-        return _gradients[_currentLevel];
     }
     
     public void AddScore()
@@ -112,15 +112,10 @@ public class GameManager : MonoBehaviour
         _blockNum = 0;
     }
 
-    public void RestartLevel()
-    {
-        Application.LoadLevel(Application.loadedLevel);
-    }
-
     public void NextLevel()
     {
         PlayerPrefs.SetInt("level", _currentLevel+1);
-        RestartLevel();
+        LoadLevel();
     }
     
     public IEnumerator BallDone()
@@ -129,7 +124,16 @@ public class GameManager : MonoBehaviour
         _isDoneBall = true;
         _oldTime = Time.time;
     }
-    
+
+    public Gradient GetGradientForCurrentLevel()
+    {
+        if (_currentLevel >= _towersCube.Count)
+        {
+            return _gradients[_currentLevel % _towersCube.Count];
+        }
+        return _gradients[_currentLevel];
+    }
+
     private void ChangeProgress()
     {
         _progressBar.fillAmount = Mathf.Lerp(_progressBar.fillAmount, _score / _percent/10, _speedProgressbar);

@@ -34,6 +34,7 @@ public class CreateTower : MonoBehaviour
     };
     void Start()
     {
+        GameManager.Gm.LoadLevel += RestartLevel;
         _floorGradient = GameManager.Gm.GetGradientForCurrentLevel();
         _positionDelta = _weight / 2 * _prefab.transform.localScale.x;
         _euler = _floor.transform.eulerAngles;
@@ -67,9 +68,9 @@ public class CreateTower : MonoBehaviour
                 }
             }
             RotateFloor(newFloor);
-
         }
     }
+    
     GameObject CreateFloor(int y, GameObject newBuilding)
     {
         Vector3 floorPosition = transform.position;
@@ -78,14 +79,27 @@ public class CreateTower : MonoBehaviour
         return (ret);
 
     }
+    
     void CreateBlock(Vector3 newPosition, GameObject newFloor)
     {
-        GameObject newBlock = Instantiate(_prefab, newPosition + transform.position, Quaternion.identity, newFloor.transform);
+        //GameObject newBlock = Instantiate(_prefab, newPosition + transform.position, Quaternion.identity, newFloor.transform);
+        BlockCheck bc = CubePool.Cb.Get();
+        GameObject newBlock = bc.gameObject;
+        newBlock.transform.parent = newFloor.transform;
+        newBlock.transform.rotation = newFloor.transform.rotation;
+        newBlock.transform.position = newPosition + transform.position;
+        newBlock.SetActive(true);
         newBlock.GetComponent<MeshRenderer>().material.color = _floorGradient.Evaluate((newPosition.y / 20) % 1);
     }
+    
     void RotateFloor(GameObject newFloor)
     {
         newFloor.transform.eulerAngles = _euler;
         _euler.y += _anglesDelta;
+    }
+
+    private void RestartLevel()
+    {
+        gameObject.SetActive(false);
     }
 }
