@@ -154,6 +154,7 @@ public class GameManager : MonoBehaviour
         _RetryLevel.SetActive(true);
         _isRetry = true;
     }
+    
     /*
      * For testing
     */
