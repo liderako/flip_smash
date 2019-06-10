@@ -56,7 +56,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BallController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\RotateController.cs" />
+    <Compile Include="Assets\Scripts\Player\Controller.cs" />
     <Compile Include="Assets\Scripts\Tower\BlockCheck.cs" />
     <Compile Include="Assets\Scripts\Tower\CreateCylinderTower.cs" />
     <Compile Include="Assets\Scripts\Tower\CreateTower.cs" />

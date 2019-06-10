@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Player;
 
 public class Trough : MonoBehaviour
 {
@@ -39,11 +40,11 @@ public class Trough : MonoBehaviour
 
     private void MoveUp()
     {
-        if (Input.GetMouseButtonDown(0) && _isDown && !RotateController.Rt.IsBall)
+        if (Input.GetMouseButtonDown(0) && _isDown && !Controller.playerController.IsBall)
         {
             _isMoveUp = true;
             _isDown = false;
-            RotateController.Rt.IsBall = true;
+            Controller.playerController.IsBall = true;
         }
         
         if (_isMoveUp)
@@ -53,7 +54,7 @@ public class Trough : MonoBehaviour
             {
                 _isMoveUp = false;
                 _isUp = true;
-                RotateController.Rt.IsBall = true;
+                Controller.playerController.IsBall = true;
                 
                 _balls.First().GetComponent<SphereCollider>().enabled = true;
                 _balls.First().GetComponent<Rigidbody>().useGravity = true;

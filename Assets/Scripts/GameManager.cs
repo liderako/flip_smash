@@ -9,9 +9,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _lvlText;
     [SerializeField] private TextMeshProUGUI _percentText;
-    [SerializeField] private TextMeshProUGUI _DestroyText;
-    [SerializeField] private GameObject _TextEndLevel;
-    [SerializeField] private GameObject _RetryLevel;
+    [SerializeField] private GameObject _textEndLevel;
+    [SerializeField] private GameObject _retryLevel;
     [SerializeField] private Image _progressBar;
     [SerializeField] private Image _nextLvl;
     [SerializeField, Range(0, 1)] private float _winDelta;
@@ -19,15 +18,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Gradient> _gradients;
     [SerializeField] private List<GameObject> _towersCube;
     private int _destroyBlock;
-    public float _win; // change from public to private
-    public float _percent; // change from public to private
-    public float _score = 0; // change from public to private
-    public float _blockNum = 0; // change from public to private
-    public int _currentLevel; // change from public to private
-    public bool _isLeveldone; // change from public to private
-    public bool _isDoneBall;
+    
+    
+    private float _win;
+    private float _percent;
+    private float _score;
+    private float _blockNum;
+    private int _currentLevel;
+    [SerializeField]private bool _isLeveldone;
+    [SerializeField]private bool _isDoneBall;
     private bool _isRetry;
-    private float _oldTime;
+    [SerializeField]private float _oldTime;
+    
     [SerializeField]private float _waitTime;
     
     public static GameManager Gm;
@@ -62,18 +64,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            RestartLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            DeleteProgressLevel();
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            NextLevel();
-        }
+        TestInput();
         
         if (_isLeveldone && Input.GetMouseButtonDown(0))
         {
@@ -132,6 +123,13 @@ public class GameManager : MonoBehaviour
         RestartLevel();
     }
     
+    public IEnumerator BallDone()
+    {
+        yield return new WaitForSeconds(_waitTime);
+        _isDoneBall = true;
+        _oldTime = Time.time;
+    }
+    
     private void ChangeProgress()
     {
         _progressBar.fillAmount = Mathf.Lerp(_progressBar.fillAmount, _score / _percent/10, _speedProgressbar);
@@ -144,29 +142,39 @@ public class GameManager : MonoBehaviour
         {
             _nextLvl.fillAmount = Mathf.Lerp(_nextLvl.fillAmount, 1, _speedProgressbar / 10);
             _isLeveldone = true;
-            _TextEndLevel.SetActive(true);
+            _textEndLevel.SetActive(true);
         }
     }
-    public void RetryLevel()
+    private void RetryLevel()
     {
-        _destroyBlock = (int)_progressBar.fillAmount * 100;
-        _DestroyText.text = _destroyBlock + "%";
-        _RetryLevel.SetActive(true);
+        _destroyBlock = (int)(_progressBar.fillAmount * 100);
+        _percentText.text = _destroyBlock + "%";
+        _retryLevel.SetActive(true);
         _isRetry = true;
     }
     
     /*
-     * For testing
-    */
-    public void DeleteProgressLevel()
+     * * For testing
+     * */
+    private void DeleteProgressLevel()
     {
         PlayerPrefs.SetInt("level", 0);
         RestartLevel();
     }
-
-    public IEnumerator BallDone()
+    
+    private void TestInput()
     {
-        yield return new WaitForSeconds(_waitTime);
-        _isDoneBall = true;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            RestartLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            DeleteProgressLevel();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            NextLevel();
+        }
     }
 }
